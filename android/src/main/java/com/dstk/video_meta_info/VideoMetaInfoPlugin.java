@@ -5,12 +5,14 @@ import android.content.Context;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -90,8 +92,10 @@ public class VideoMetaInfoPlugin implements FlutterPlugin, MethodCallHandler {
             } else {
                 orientation = null;
             }
-
-            mediaRetriever.release();
+            try {
+                mediaRetriever.release();
+            } catch (IOException e) {
+            }
         }else{
             author="";
             dateString="";
